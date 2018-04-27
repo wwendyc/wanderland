@@ -35,65 +35,42 @@ class Main extends Component {
   render() {
     return (
       <Scene
-      effects="bloom, film, fxaa"
-      bloom={{ radius: 0.99 }}
-      film={{
-        sIntensity: 0.15,
-        nIntensity: 0.25
-      }}
-      fxaa
-      environment={{
-        preset: 'japan',
-        seed: 1,
-        lightPosition: { x: 200.0, y: 1.0, z: -50.0 },
-        fog: 0.8,
-        ground: 'canyon',
-        groundYScale: 5.0,
-        groundTexture: 'none',
-        groundColor: '#003462', // 755b5c
-        grid: 'none'
-      }}
-      // particle-system={{preset: 'snow', particleCount: 2000}}
+        effects="bloom, film, fxaa"
+        bloom={{ radius: 0.99 }}
+        film={{
+          sIntensity: 0.15,
+          nIntensity: 0.25
+        }}
+        fxaa
+        environment={{
+          preset: 'starry',
+          seed: 1,
+          lightPosition: { x: 200.0, y: 1.0, z: -50.0 },
+          fog: 0.8,
+          ground: 'canyon',
+          groundYScale: 5.0,
+          groundTexture: 'none',
+          groundColor: '#003462', // 755b5c
+          grid: 'none'
+        }}
+        particle-system={{preset: 'snow', particleCount: 2000}}
       >
         <a-assets>
-          <a-asset-item id="mtl" src="3d-objects/pikachu-ball/materials.mtl" />
-          <a-asset-item id="pikachu" src="3d-objects/pikachu-ball/model.obj" />
+          <a-asset-item
+            id="mtl"
+            src="./assets/3d-objects/pikachu-ball/materials.mtl"
+          />
+          <a-asset-item
+            id="pikachu"
+            src="./assets/3d-objects/pikachu-ball/model.obj"
+          />
         </a-assets>
 
-        <Entity
-          class="clickable"
-          obj-model="obj: #pikachu; mtl: #mtl;"
-          scale="5 5 5"
-          detail={2}
-          radius={2}
-          position={this.state.spherePosition}
-          color="#FAFAF1"
-          events={{
-            click: this._handleClick.bind(this)
-          }}
-          animation__rotate={{
-            property: 'rotation',
-            dur: 30000,
-            easing: 'linear',
-            loop: true,
-            to: { x: 0, y: 360, z: 0 }
-          }}
-          animation__oscillate={{
-            property: 'position',
-            dur: 2000,
-            dir: 'alternate',
-            easing: 'linear',
-            loop: true,
-            from: this.state.spherePosition,
-            to: {
-              x: this.state.spherePosition.x,
-              y: this.state.spherePosition.y + 0.25,
-              z: this.state.spherePosition.z
-            }
-          }}
-        />
+        <Entity obj-model="obj: #pikachu; mtl: #mtl;" />
 
-        {/* <Entity
+        <Entity />
+
+        <Entity
           class="clickable"
           lowpoly={{
             color: COLORS[this.state.colorIndex],
@@ -129,7 +106,7 @@ class Main extends Component {
               z: this.state.spherePosition.z
             }
           }}
-        /> */}
+        />
 
         <Entity
           primitive="a-light"
