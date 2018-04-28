@@ -14,6 +14,8 @@ import 'aframe-extras'
 import './components/aframe-custom'
 import './components/aframe-environment'
 import './components/aframe-effects'
+import './components/audioanalyser-volume-bind'
+import './components/audioanalyser-waveform'
 // import './components/build'
 
 import { h, render } from 'preact'

@@ -34,7 +34,7 @@ class Main extends Component {
 
   render() {
     return (
-      <Scene
+      <a-scene
         effects="bloom, film, fxaa"
         bloom={{ radius: 0.99 }}
         film={{
@@ -53,18 +53,18 @@ class Main extends Component {
           groundColor: '#003462', // 755b5c
           grid: 'none'
         }}
-        particle-system={{preset: 'snow', particleCount: 2000}}
+        // particle-system={{preset: 'snow', particleCount: 2000}}
       >
         <a-assets>
           <a-asset-item id="mtl" src="3d-objects/pikachu-ball/materials.mtl" />
           <a-asset-item id="pikachu" src="3d-objects/pikachu-ball/model.obj" />
-          {/* <audio id="song" src="wave/lightitup.wav" autoplay loop /> */}
+          <audio id="song" src="sound/yourhandinmine.mp3" autoplay loop />
         </a-assets>
 
-        {/* <Entity primitive="a-sound" src="#song" />
+        {/* <Entity primitive="a-sound" src="#song" /> */}
 
         <Entity
-          audioanalyser={{
+          customizedaudioanalyser={{
             enableBeatDetection: true,
             enableLevels: true,
             enableWaveform: true,
@@ -77,19 +77,8 @@ class Main extends Component {
           audioanalyser="src: #song"
           audioanalyser-waveform="radius: 0.5"
           rotation="90 0 0"
-          position="0 50 0"
-        /> */}
-
-          {/* <Entity primitive="a-light" type="ambient" color="#222" /> */}
-
-        {/* <Entity
-          primitive="a-light"
-          audioanalyser-volume-bind="analyserEl: #analyser; component: light; property: intensity; max: 2.2; multiplier: .018"
-          type="point"
-          position="1 2 1"
-        /> */}
-
-        {/* <Entity primitive="a-light" type="point" position="-2 2 1" /> */}
+          position="0 1 -10"
+        />
 
         <Entity
           class="clickable"
@@ -166,47 +155,82 @@ class Main extends Component {
             }}
           />
         </Entity>
-
-        {/* <Entity
-          class="clickable"
-          lowpoly={{
-            color: COLORS[this.state.colorIndex],
-            nodes: true,
-            opacity: 0.15,
-            wireframe: true
-          }}
-          primitive="a-octahedron"
-          detail={2}
-          radius={2}
-          position={this.state.spherePosition}
-          color="#FAFAF1"
-          events={{
-            click: this._handleClick.bind(this)
-          }}
-          animation__rotate={{
-            property: 'rotation',
-            dur: 60000,
-            easing: 'linear',
-            loop: true,
-            to: { x: 0, y: 360, z: 0 }
-          }}
-          animation__oscillate={{
-            property: 'position',
-            dur: 2000,
-            dir: 'alternate',
-            easing: 'linear',
-            loop: true,
-            from: this.state.spherePosition,
-            to: {
-              x: this.state.spherePosition.x,
-              y: this.state.spherePosition.y + 0.25,
-              z: this.state.spherePosition.z
-            }
-          }} */}
-        />
-      </Scene>
+      </a-scene>
     )
   }
 }
 
 export default Main
+
+
+// additional lights
+/*
+ <Entity primitive="a-light" type="ambient" color="#222" />
+
+<Entity
+  primitive="a-light"
+  audioanalyser-volume-bind="analyserEl: #analyser; component: light; property: intensity; max: 2.2; multiplier: .018"
+  type="point"
+  position="1 2 1"
+/>
+
+<Entity primitive="a-light" type="point" position="-2 2 1" />
+*/
+
+// testing out renders using aframe instead of aframe-react
+/* <a-entity
+  geometry="primitive: octahedron"
+  detail={2}
+  radius={5}
+  position={this.state.spherePosition}
+  color="#FAFAF1"
+/> */
+
+/* <a-entity id="customizedaudioanalyser"
+  audioanalyser="src: #song"
+  audioanalyser-waveform="radius: 0.5"
+  rotation="90 0 0"
+  position="0 50 0"
+></a-entity> */
+
+
+// polygon
+/*
+  <Entity
+    class="clickable"
+    lowpoly={{
+      color: COLORS[this.state.colorIndex],
+      nodes: true,
+      opacity: 0.15,
+      wireframe: true
+    }}
+    primitive="a-octahedron"
+    detail={2}
+    radius={2}
+    position={this.state.spherePosition}
+    color="#FAFAF1"
+    events={{
+      click: this._handleClick.bind(this)
+    }}
+    animation__rotate={{
+      property: 'rotation',
+      dur: 60000,
+      easing: 'linear',
+      loop: true,
+      to: { x: 0, y: 360, z: 0 }
+    }}
+    animation__oscillate={{
+      property: 'position',
+      dur: 2000,
+      dir: 'alternate',
+      easing: 'linear',
+      loop: true,
+      from: this.state.spherePosition,
+      to: {
+        x: this.state.spherePosition.x,
+        y: this.state.spherePosition.y + 0.25,
+        z: this.state.spherePosition.z
+      }
+    }}
+  />
+*/
