@@ -14,6 +14,7 @@ import 'aframe-extras'
 import './components/aframe-custom'
 import './components/aframe-environment'
 import './components/aframe-effects'
+// import './components/build'
 
 import { h, render } from 'preact'
 import Main from './main'

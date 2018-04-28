@@ -1,11 +1,10 @@
 {
-  "name": "A-Frame-Preact",
-  "description": "A boilerplate project for getting started with WebVR using A-Frame and Preact",
+  "name": "WebVR-Audio-Visualizer",
+  "description": "A webVR project using A-Frame and React/Preact to analyze and visualize audio waves",
   "private": true,
-  "author": "Prayash Thapa",
-  "homepage": "http://effulgence.io/",
+  "author": "Wendy Chang",
   "version": "1.0.0",
-  "repository": "https://github.com/prayasht/aframe-preact-starter/",
+  "repository": "https://github.com/wwendyc/webvr-audiovisualizer",
   "scripts": {
     "start": "brunch watch --server",
     "build": "brunch build --production",
