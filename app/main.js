@@ -42,10 +42,12 @@ class Main extends Component {
         //   nIntensity: 0.25
         // }}
         // fxaa
+        raycaster-refresh
         environment={{
           preset: 'japan',
           seed: 1,
-          // skyType: 'atmosphere',
+          skyType: 'gradient',
+          skyColor: '#A5F2F3',
           shadow: true,
           lightPosition: { x: 200.0, y: 1.0, z: -50.0 },
           fog: 0.8,
@@ -60,13 +62,22 @@ class Main extends Component {
       >
         <a-assets>
           <a-asset-item id="mtl" src="3d-objects/pikachu-ball/materials.mtl" />
-          <a-asset-item id="pikachu-ball" src="3d-objects/pikachu-ball/model.obj" />
+          <a-asset-item
+            id="pikachu-ball"
+            src="3d-objects/pikachu-ball/model.obj"
+          />
           <a-asset-item id="pug-mtl" src="3d-objects/pug/pug.mtl" />
           <a-asset-item id="pug" src="3d-objects/pug/pug.obj" />
-          <a-asset-item id="penguin-mtl" src="3d-objects/penguin-poly/penguin.mtl" />
-          <a-asset-item id="penguin" src="3d-objects/penguin-poly/penguin.obj" />
-          <audio id="song" src="sound/yourhandinmine.mp3" autoplay loop />
+          <a-asset-item
+            id="penguin-mtl"
+            src="3d-objects/penguin-poly/penguin.mtl"
+          />
+          <a-asset-item
+            id="penguin"
+            src="3d-objects/penguin-poly/penguin.obj"
+          />
           <audio id="pikachu-sound" src="sound/pikachu-sound.mp3" />
+          <audio id="song" src="sound/yourhandinmine.mp3" autoplay loop />
         </a-assets>
 
         <Entity
@@ -87,6 +98,22 @@ class Main extends Component {
         />
 
         <Entity
+          obj-model="obj: #pug; mtl: #pug-mtl;"
+          // rotation="0 90 0"
+          position="-5 1 -12"
+          scale="0.5 0.5 0.5"
+          animation__rotate={{
+            property: 'position',
+            delay: 1000,
+            from: { x: 0, y: 0.5, z: -15 },
+            to: { x: 0, y: 0.5, z: -2 },
+            // easing: 'ease-in-out-circ',
+            dur: 7000
+            // begin: 'mouseenter'
+          }}
+        />
+
+        <Entity
           obj-model="obj: #penguin; mtl: #penguin-mtl;"
           rotation="0 90 0"
           position="-5 1 -12"
@@ -104,27 +131,33 @@ class Main extends Component {
         />
 
         <Entity
-          // class="clickable"
+          class="clickable"
+          primitive="a-box"
+          playSound
+          position={{ x: 5, y: 0.5, z: -5 }}
+          events={{
+            click: this._handleClick.bind(this)
+          }}
+        >
+        </Entity>
+
+        <Entity
+          class="clickable"
           // lowpoly={{
           //   color: COLORS[this.state.colorIndex],
           //   nodes: true,
           //   opacity: 0.15,
           //   wireframe: true
           // }}
-          // primitive="a-octahedron"
+          playSound
           obj-model="obj: #pikachu-ball; mtl: #mtl;"
           scale="5 5 5"
           detail={2}
           radius={2}
           position={this.state.spherePosition}
-          sound="src: #pikachu-sound; on: click"
-          // sound={{
-          //   src: '#pikachu-sound',
-          //   on: 'click'
-          // }}
-          // events={{
-          //   click: this._handleClick.bind(this)
-          // }}
+          events={{
+            click: this._handleClick.bind(this)
+          }}
           animation__rotate={{
             property: 'rotation',
             dur: 30000,
@@ -147,6 +180,7 @@ class Main extends Component {
           }}
         />
 
+
         <Entity
           primitive="a-light"
           type="directional"
@@ -167,17 +201,17 @@ class Main extends Component {
         <Entity primitive="a-camera" look-controls>
           <Entity
             primitive="a-cursor"
-            cursor={{ fuse: true }}
+            cursor={{ fuse: false }}
             material={{ color: 'white', shader: 'flat', opacity: 0.75 }}
             geometry={{ radiusInner: 0.005, radiusOuter: 0.007 }}
-            // event-set__1={{
-            //   _event: 'mouseenter',
-            //   scale: { x: 1.4, y: 1.4, z: 1.4 }
-            // }}
-            // event-set__1={{
-            //   _event: 'mouseleave',
-            //   scale: { x: 1, y: 1, z: 1 }
-            // }}
+            event-set__1={{
+              _event: 'mouseenter',
+              scale: { x: 3.4, y: 3.4, z: 3.4 }
+            }}
+            event-set__1={{
+              _event: 'mouseleave',
+              scale: { x: 1, y: 1, z: 1 }
+            }}
             raycaster={{
               objects: '.clickable'
             }}
