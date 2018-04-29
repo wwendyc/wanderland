@@ -11,7 +11,6 @@ import 'aframe-event-set-component'
 import 'aframe-particle-system-component'
 import 'aframe-audioanalyser-component'
 import 'aframe-rain'
-// import 'aframe-extras'
 
 import './components/aframe-custom'
 import './components/aframe-environment'

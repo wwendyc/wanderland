@@ -13,17 +13,10 @@ class Main extends Component {
   constructor() {
     super()
     this.state = {
-      colorIndex: 0,
       spherePosition: { x: 0.0, y: 7, z: -10.0 },
+      colorIndex: 0,
       color: 'red'
     }
-  }
-
-  changeColor() {
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue']
-    this.setState({
-      color: colors[Math.floor(Math.random() * colors.length)]
-    })
   }
 
   _handleClick() {
@@ -35,13 +28,6 @@ class Main extends Component {
   render() {
     return (
       <a-scene
-        // effects="bloom, film, fxaa"
-        // bloom={{ radius: 0.99 }}
-        // film={{
-        //   sIntensity: 0.15,
-        //   nIntensity: 0.25
-        // }}
-        // fxaa
         raycaster-refresh
         environment={{
           preset: 'japan',
@@ -57,7 +43,22 @@ class Main extends Component {
           groundColor: '#003462', // land: 755b5c, ocean: 003462, ice: A5F2F3
           grid: 'none'
         }}
-        rain="color:#ffffff;vector:-1 -2 0;count:5000;opacity: 1;splash:false;width:60;dropHeight:0.2"
+        rain={{
+          color: '#ffffff',
+          vector: { x: -1.0, y: -2.0, z: 0.0 },
+          count: 5000,
+          opacity: 1,
+          splash: false,
+          width: 60,
+          dropHeight: 0.2
+        }}
+        // effects="bloom, film, fxaa"
+        // bloom={{ radius: 0.99 }}
+        // film={{
+        //   sIntensity: 0.15,
+        //   nIntensity: 0.25
+        // }}
+        // fxaa
         // particle-system={{preset: 'snow', particleCount: 2000}}
       >
         <a-assets>
@@ -99,35 +100,47 @@ class Main extends Component {
 
         <Entity
           obj-model="obj: #pug; mtl: #pug-mtl;"
-          scale="0.5 0.5 0.5"
+          rotation="0 -60 0"
+          scale="0.3 0.3 0.3"
+          follow={{
+            target: "#player",
+            distance: { x: 2, y: -1, z: -2 }
+          }}
           animation__rotate={{
-            property: 'position',
+            property: 'rotation',
+            dir: 'alternate',
             delay: 1000,
-            from: { x: 0, y: 0.5, z: -15 },
-            to: { x: 0, y: 0.5, z: -2 },
-            dur: 7000
-            // easing: 'ease-in-out-circ',
-            // begin: 'mouseenter'
+            dur: 3000,
+            easing: 'linear',
+            loop: true,
+            from: { x: 0, y: -50, z: 0 },
+            to: { x: 0, y: -90, z: 0 },
           }}
         />
 
-        <Entity position="-5 0.5 -7">
+        <Entity position="-15 0.5 -7">
           <Entity
             obj-model="obj: #penguin; mtl: #penguin-mtl;"
             position="0 0.5 -2"
-            // rotation="0 90 0"
-            // animation__rotate={{
-            //   property: 'rotation',
-            //   to: { x: 0, y: 0, z: 360 },
-            //   repeat: 'indefinite',
-            //   dur: 7000
-            //   // easing: 'ease-in-out-circ',
-            //   // begin: 'mouseenter'
-            // }}
           />
           <a-animation
             attribute="rotation"
-            dur="10000"
+            dur="15000"
+            fill="forwards"
+            to="0 360 0"
+            easing="linear"
+            repeat="indefinite"
+          />
+        </Entity>
+
+        <Entity position="0 0.5 -2">
+          <Entity
+            obj-model="obj: #penguin; mtl: #penguin-mtl;"
+            position="-15 0.5 -7"
+          />
+          <a-animation
+            attribute="rotation"
+            dur="30000"
             fill="forwards"
             to="0 360 0"
             repeat="indefinite"
@@ -139,7 +152,7 @@ class Main extends Component {
           playSound
           obj-model="obj: #pikachu-ball; mtl: #mtl;"
           scale="5 5 5"
-          detail={2}
+          // detail={2}
           radius={2}
           position={this.state.spherePosition}
           events={{
@@ -184,7 +197,7 @@ class Main extends Component {
           }}
         />
 
-        <Entity primitive="a-camera" look-controls>
+        <Entity id="player" primitive="a-camera" wasd-controls look-controls>
           <Entity
             primitive="a-cursor"
             cursor={{ fuse: false }}
@@ -202,6 +215,12 @@ class Main extends Component {
               objects: '.clickable'
             }}
           />
+          {/* <Entity
+            obj-model="obj: #pug; mtl: #pug-mtl;"
+            position="-2 -1.5 -1.5"
+            rotation="0 60 0"
+            scale="0.5 0.5 0.5"
+          /> */}
         </Entity>
       </a-scene>
     )
