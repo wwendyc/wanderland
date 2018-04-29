@@ -14,7 +14,7 @@ class Main extends Component {
     super()
     this.state = {
       colorIndex: 0,
-      spherePosition: { x: 0.0, y: 4, z: -10.0 },
+      spherePosition: { x: 0.0, y: 7, z: -10.0 },
       color: 'red'
     }
   }
@@ -35,33 +35,39 @@ class Main extends Component {
   render() {
     return (
       <a-scene
-        effects="bloom, film, fxaa"
-        bloom={{ radius: 0.99 }}
-        film={{
-          sIntensity: 0.15,
-          nIntensity: 0.25
-        }}
-        fxaa
+        // effects="bloom, film, fxaa"
+        // bloom={{ radius: 0.99 }}
+        // film={{
+        //   sIntensity: 0.15,
+        //   nIntensity: 0.25
+        // }}
+        // fxaa
         environment={{
           preset: 'japan',
           seed: 1,
+          // skyType: 'atmosphere',
+          shadow: true,
           lightPosition: { x: 200.0, y: 1.0, z: -50.0 },
           fog: 0.8,
           ground: 'canyon',
           groundYScale: 5.0,
           groundTexture: 'none',
-          groundColor: '#003462', // 755b5c
+          groundColor: '#003462', // land: 755b5c, ocean: 003462, ice: A5F2F3
           grid: 'none'
         }}
+        rain="color:#ffffff;vector:-1 -2 0;count:5000;opacity: 1;splash:false;width:60;dropHeight:0.2"
         // particle-system={{preset: 'snow', particleCount: 2000}}
       >
         <a-assets>
           <a-asset-item id="mtl" src="3d-objects/pikachu-ball/materials.mtl" />
-          <a-asset-item id="pikachu" src="3d-objects/pikachu-ball/model.obj" />
+          <a-asset-item id="pikachu-ball" src="3d-objects/pikachu-ball/model.obj" />
+          <a-asset-item id="pug-mtl" src="3d-objects/pug/pug.mtl" />
+          <a-asset-item id="pug" src="3d-objects/pug/pug.obj" />
+          <a-asset-item id="penguin-mtl" src="3d-objects/penguin-poly/penguin.mtl" />
+          <a-asset-item id="penguin" src="3d-objects/penguin-poly/penguin.obj" />
           <audio id="song" src="sound/yourhandinmine.mp3" autoplay loop />
+          <audio id="pikachu-sound" src="sound/pikachu-sound.mp3" />
         </a-assets>
-
-        {/* <Entity primitive="a-sound" src="#song" /> */}
 
         <Entity
           customizedaudioanalyser={{
@@ -72,16 +78,33 @@ class Main extends Component {
             fftSize: 2048,
             smoothingTimeConstant: 0.8,
             src: 'selector',
-            unique: {default: false}
+            unique: { default: false }
           }}
           audioanalyser="src: #song"
           audioanalyser-waveform="radius: 0.5"
           rotation="90 0 0"
-          position="0 1 -10"
+          position="0 0.5 -10"
         />
 
         <Entity
-          class="clickable"
+          obj-model="obj: #penguin; mtl: #penguin-mtl;"
+          rotation="0 90 0"
+          position="-5 1 -12"
+          // scale="0.5 0.5 0.5"
+          animation__rotate={{
+            property: 'position',
+            delay: 1000,
+            from: { x: 0, y: 0.5, z: -15 },
+            to: { x: 0, y: 0.5, z: -2 },
+            // easing: 'ease-in-out-circ',
+            repeat: 'indefinite',
+            dur: 7000
+            // begin: 'mouseenter'
+          }}
+        />
+
+        <Entity
+          // class="clickable"
           // lowpoly={{
           //   color: COLORS[this.state.colorIndex],
           //   nodes: true,
@@ -89,14 +112,19 @@ class Main extends Component {
           //   wireframe: true
           // }}
           // primitive="a-octahedron"
-          obj-model="obj: #pikachu; mtl: #mtl;"
+          obj-model="obj: #pikachu-ball; mtl: #mtl;"
           scale="5 5 5"
           detail={2}
           radius={2}
           position={this.state.spherePosition}
-          events={{
-            click: this._handleClick.bind(this)
-          }}
+          sound="src: #pikachu-sound; on: click"
+          // sound={{
+          //   src: '#pikachu-sound',
+          //   on: 'click'
+          // }}
+          // events={{
+          //   click: this._handleClick.bind(this)
+          // }}
           animation__rotate={{
             property: 'rotation',
             dur: 30000,
@@ -139,17 +167,17 @@ class Main extends Component {
         <Entity primitive="a-camera" look-controls>
           <Entity
             primitive="a-cursor"
-            cursor={{ fuse: false }}
+            cursor={{ fuse: true }}
             material={{ color: 'white', shader: 'flat', opacity: 0.75 }}
             geometry={{ radiusInner: 0.005, radiusOuter: 0.007 }}
-            event-set__1={{
-              _event: 'mouseenter',
-              scale: { x: 1.4, y: 1.4, z: 1.4 }
-            }}
-            event-set__1={{
-              _event: 'mouseleave',
-              scale: { x: 1, y: 1, z: 1 }
-            }}
+            // event-set__1={{
+            //   _event: 'mouseenter',
+            //   scale: { x: 1.4, y: 1.4, z: 1.4 }
+            // }}
+            // event-set__1={{
+            //   _event: 'mouseleave',
+            //   scale: { x: 1, y: 1, z: 1 }
+            // }}
             raycaster={{
               objects: '.clickable'
             }}
@@ -161,7 +189,6 @@ class Main extends Component {
 }
 
 export default Main
-
 
 // additional lights
 /*
@@ -192,7 +219,6 @@ export default Main
   rotation="90 0 0"
   position="0 50 0"
 ></a-entity> */
-
 
 // polygon
 /*
@@ -233,4 +259,11 @@ export default Main
       }
     }}
   />
+*/
+
+/*
+sound={{
+  src: '#pikachu-sound',
+  on: 'click'
+}}
 */

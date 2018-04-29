@@ -160,7 +160,7 @@ AFRAME.registerComponent('lowpoly', {
 
     // Modify the color of the material
     obj.material = new THREE.MeshPhongMaterial({
-      color: this.data.color,
+      // color: this.data.color,
       shading: THREE.FlatShading
     })
 
