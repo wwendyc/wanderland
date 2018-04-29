@@ -99,56 +99,43 @@ class Main extends Component {
 
         <Entity
           obj-model="obj: #pug; mtl: #pug-mtl;"
-          // rotation="0 90 0"
-          position="-5 1 -12"
           scale="0.5 0.5 0.5"
           animation__rotate={{
             property: 'position',
             delay: 1000,
             from: { x: 0, y: 0.5, z: -15 },
             to: { x: 0, y: 0.5, z: -2 },
-            // easing: 'ease-in-out-circ',
             dur: 7000
+            // easing: 'ease-in-out-circ',
             // begin: 'mouseenter'
           }}
         />
 
-        <Entity
-          obj-model="obj: #penguin; mtl: #penguin-mtl;"
-          rotation="0 90 0"
-          position="-5 1 -12"
-          // scale="0.5 0.5 0.5"
-          animation__rotate={{
-            property: 'position',
-            delay: 1000,
-            from: { x: 0, y: 0.5, z: -15 },
-            to: { x: 0, y: 0.5, z: -2 },
-            // easing: 'ease-in-out-circ',
-            repeat: 'indefinite',
-            dur: 7000
-            // begin: 'mouseenter'
-          }}
-        />
-
-        <Entity
-          class="clickable"
-          primitive="a-box"
-          playSound
-          position={{ x: 5, y: 0.5, z: -5 }}
-          events={{
-            click: this._handleClick.bind(this)
-          }}
-        >
+        <Entity position="-5 0.5 -7">
+          <Entity
+            obj-model="obj: #penguin; mtl: #penguin-mtl;"
+            position="0 0.5 -2"
+            // rotation="0 90 0"
+            // animation__rotate={{
+            //   property: 'rotation',
+            //   to: { x: 0, y: 0, z: 360 },
+            //   repeat: 'indefinite',
+            //   dur: 7000
+            //   // easing: 'ease-in-out-circ',
+            //   // begin: 'mouseenter'
+            // }}
+          />
+          <a-animation
+            attribute="rotation"
+            dur="10000"
+            fill="forwards"
+            to="0 360 0"
+            repeat="indefinite"
+          />
         </Entity>
 
         <Entity
           class="clickable"
-          // lowpoly={{
-          //   color: COLORS[this.state.colorIndex],
-          //   nodes: true,
-          //   opacity: 0.15,
-          //   wireframe: true
-          // }}
           playSound
           obj-model="obj: #pikachu-ball; mtl: #mtl;"
           scale="5 5 5"
@@ -179,7 +166,6 @@ class Main extends Component {
             }
           }}
         />
-
 
         <Entity
           primitive="a-light"
@@ -300,4 +286,18 @@ sound={{
   src: '#pikachu-sound',
   on: 'click'
 }}
+*/
+
+// movements
+/*
+<a-entity position="-5 0.5 -7">
+  <Entity primitive="a-box" color="red" position="0 -1 0" />
+  <a-animation
+    attribute="rotation"
+    dur="4000"
+    fill="forwards"
+    to="0 360 360"
+    repeat="indefinite"
+  />
+</a-entity>
 */
