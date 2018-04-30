@@ -6,8 +6,10 @@
 
 import { h, Component } from 'preact'
 import { Entity, Scene } from 'aframe-react'
+import Penguin from './components/Penguin'
 
 const COLORS = ['#D92B6A', '#9564F2', '#FFCF59']
+const penguinData = [{id: 1, fromPos: "-15 0.5 -7", toPos: "0 0.5 -2", duration: "15000", easing: "linear"}, {id: 2, fromPos: "10 0.5 -2", toPos: "-15 0.5 -3", duration: "30000", easing: "ease-in-out"}, {id: 3, fromPos: "8 0.5 -5", toPos: "15 0.5 -7", duration: "30000", easing: "ease-in-out"}]
 
 class Main extends Component {
   constructor() {
@@ -59,7 +61,7 @@ class Main extends Component {
         //   nIntensity: 0.25
         // }}
         // fxaa
-        // particle-system={{preset: 'snow', particleCount: 2000}}
+        particle-system={{preset: 'snow', particleCount: 2000}}
       >
         <a-assets>
           <a-asset-item id="mtl" src="3d-objects/pikachu-ball/materials.mtl" />
@@ -76,6 +78,38 @@ class Main extends Component {
           <a-asset-item
             id="penguin"
             src="3d-objects/penguin-poly/penguin.obj"
+          />
+          <a-asset-item
+            id="polarbear-mtl"
+            src="3d-objects/polar-bear/bear_animation.mtl"
+          />
+          <a-asset-item
+            id="polarbear"
+            src="3d-objects/polar-bear/bear_animation.obj"
+          />
+          <a-asset-item
+            id="arctic-fox-mtl"
+            src="3d-objects/arctic-fox/ArcticFox_Posed.mtl"
+          />
+          <a-asset-item
+            id="arctic-fox"
+            src="3d-objects/arctic-fox/ArcticFox_Posed.obj"
+          />
+          <a-asset-item
+            id="cat-tubs-mtl"
+            src="3d-objects/cat-tubs/cat-tubs.mtl"
+          />
+          <a-asset-item
+            id="cat-tubs"
+            src="3d-objects/cat-tubs/cat-tubs.obj"
+          />
+          <a-asset-item
+            id="igloo-mtl"
+            src="3d-objects/igloo/igloo.mtl"
+          />
+          <a-asset-item
+            id="igloo"
+            src="3d-objects/igloo/igloo.obj"
           />
           <audio id="pikachu-sound" src="sound/pikachu-sound.mp3" />
           <audio id="song" src="sound/yourhandinmine.mp3" autoplay loop />
@@ -99,60 +133,10 @@ class Main extends Component {
         />
 
         <Entity
-          obj-model="obj: #pug; mtl: #pug-mtl;"
-          rotation="0 -60 0"
-          scale="0.3 0.3 0.3"
-          follow={{
-            target: "#player",
-            distance: { x: 2, y: -1, z: -2 }
-          }}
-          animation__rotate={{
-            property: 'rotation',
-            dir: 'alternate',
-            delay: 1000,
-            dur: 3000,
-            easing: 'linear',
-            loop: true,
-            from: { x: 0, y: -50, z: 0 },
-            to: { x: 0, y: -90, z: 0 },
-          }}
-        />
-
-        <Entity position="-15 0.5 -7">
-          <Entity
-            obj-model="obj: #penguin; mtl: #penguin-mtl;"
-            position="0 0.5 -2"
-          />
-          <a-animation
-            attribute="rotation"
-            dur="15000"
-            fill="forwards"
-            to="0 360 0"
-            easing="linear"
-            repeat="indefinite"
-          />
-        </Entity>
-
-        <Entity position="0 0.5 -2">
-          <Entity
-            obj-model="obj: #penguin; mtl: #penguin-mtl;"
-            position="-15 0.5 -7"
-          />
-          <a-animation
-            attribute="rotation"
-            dur="30000"
-            fill="forwards"
-            to="0 360 0"
-            repeat="indefinite"
-          />
-        </Entity>
-
-        <Entity
+          obj-model="obj: #pikachu-ball; mtl: #mtl;"
           class="clickable"
           playSound
-          obj-model="obj: #pikachu-ball; mtl: #mtl;"
           scale="5 5 5"
-          // detail={2}
           radius={2}
           position={this.state.spherePosition}
           events={{
@@ -179,6 +163,50 @@ class Main extends Component {
             }
           }}
         />
+
+        <Entity
+          obj-model="obj: #pug; mtl: #pug-mtl;"
+          rotation="0 -60 0"
+          scale="0.3 0.3 0.3"
+          follow={{
+            target: "#player",
+            distance: { x: 2, y: -1, z: -2 }
+          }}
+          animation__rotate={{
+            property: 'rotation',
+            dir: 'alternate',
+            delay: 1000,
+            dur: 3000,
+            easing: 'linear',
+            loop: true,
+            from: { x: 0, y: -70, z: 0 },
+            to: { x: 0, y: -90, z: 0 },
+          }}
+        />
+
+        <Entity
+          obj-model="obj: #polarbear; mtl: #polarbear-mtl;"
+          scale="0.3 0.3 0.3"
+          animation__rotate={{
+            property: 'position',
+            dir: 'alternate',
+            dur: 40000,
+            easing: 'linear',
+            loop: true,
+            from: { x: -25, y: 0.5, z: -5 },
+            to: { x: -5, y: 0.5, z: 10 },
+          }}
+        />
+
+        {
+          penguinData.map(penguin => <Penguin key={penguin.id} data={penguin} />)
+        }
+
+        {/* <Entity
+            obj-model="obj: #penguin-baby; mtl: #penguin-baby-mtl;"
+            // scale="2 2 2"
+            position="0 3.5 -3"
+          /> */}
 
         <Entity
           primitive="a-light"
@@ -215,12 +243,6 @@ class Main extends Component {
               objects: '.clickable'
             }}
           />
-          {/* <Entity
-            obj-model="obj: #pug; mtl: #pug-mtl;"
-            position="-2 -1.5 -1.5"
-            rotation="0 60 0"
-            scale="0.5 0.5 0.5"
-          /> */}
         </Entity>
       </a-scene>
     )
