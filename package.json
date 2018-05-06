@@ -4,7 +4,7 @@
   "private": true,
   "author": "Wendy Chang",
   "version": "1.0.0",
-  "repository": "https://github.com/wwendyc/webvr-audiovisualizer",
+  "repository": "https://github.com/wwendyc/wanderland",
   "scripts": {
     "start": "brunch watch --server",
     "build": "brunch build --production",
