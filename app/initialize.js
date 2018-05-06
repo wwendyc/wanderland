@@ -20,7 +20,6 @@ import './components/aframe-soundanalyzer'
 import './components/aframe-effects'
 import './components/audioanalyser-volume-bind'
 import './components/audioanalyser-waveform'
-import './components/aframe-sansheadset'
 import './components/aframe-lowpoly'
 
 import { h, render } from 'preact'

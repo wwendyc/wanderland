@@ -9,7 +9,29 @@ import { Entity, Scene } from 'aframe-react'
 import Penguin from './components/Penguin'
 
 const COLORS = ['#D92B6A', '#9564F2', '#FFCF59']
-const penguinData = [{id: 1, fromPos: "-15 0.5 -7", toPos: "0 0.5 -2", duration: "15000", easing: "linear"}, {id: 2, fromPos: "10 0.5 -2", toPos: "-15 0.5 -3", duration: "30000", easing: "ease-in-out"}, {id: 3, fromPos: "8 0.5 -5", toPos: "15 0.5 -7", duration: "30000", easing: "ease-in-out"}]
+const penguinData = [
+  {
+    id: 1,
+    fromPos: '-15 0.5 -7',
+    toPos: '0 0.5 -2',
+    duration: '15000',
+    easing: 'linear'
+  },
+  {
+    id: 2,
+    fromPos: '10 0.5 -2',
+    toPos: '-15 0.5 -3',
+    duration: '30000',
+    easing: 'ease-in-out'
+  },
+  {
+    id: 3,
+    fromPos: '8 0.5 -5',
+    toPos: '15 0.5 -7',
+    duration: '30000',
+    easing: 'ease-in-out'
+  }
+]
 
 class Main extends Component {
   constructor() {
@@ -61,7 +83,7 @@ class Main extends Component {
         //   nIntensity: 0.25
         // }}
         // fxaa
-        particle-system={{preset: 'snow', particleCount: 2000}}
+        particle-system={{ preset: 'snow', particleCount: 2000 }}
       >
         <a-assets>
           <a-asset-item id="mtl" src="3d-objects/pikachu-ball/materials.mtl" />
@@ -88,31 +110,15 @@ class Main extends Component {
             src="3d-objects/polar-bear/bear_animation.obj"
           />
           <a-asset-item
-            id="arctic-fox-mtl"
-            src="3d-objects/arctic-fox/ArcticFox_Posed.mtl"
-          />
-          <a-asset-item
-            id="arctic-fox"
-            src="3d-objects/arctic-fox/ArcticFox_Posed.obj"
-          />
-          <a-asset-item
             id="cat-tubs-mtl"
             src="3d-objects/cat-tubs/cat-tubs.mtl"
           />
-          <a-asset-item
-            id="cat-tubs"
-            src="3d-objects/cat-tubs/cat-tubs.obj"
-          />
-          <a-asset-item
-            id="igloo-mtl"
-            src="3d-objects/igloo/igloo.mtl"
-          />
-          <a-asset-item
-            id="igloo"
-            src="3d-objects/igloo/igloo.obj"
-          />
+          <a-asset-item id="cat-tubs" src="3d-objects/cat-tubs/cat-tubs.obj" />
+          <a-asset-item id="igloo-mtl" src="3d-objects/igloo/igloo.mtl" />
+          <a-asset-item id="igloo" src="3d-objects/igloo/igloo.obj" />
+          <video id="up-movie" src="movie/up-movie.mp4" autoplay loop />
           <audio id="pikachu-sound" src="sound/pikachu-sound.mp3" />
-          <audio id="song" src="sound/yourhandinmine.mp3" autoplay loop />
+          <audio id="song" src="sound/wake.m4a" autoplay loop />
         </a-assets>
 
         <Entity
@@ -135,7 +141,7 @@ class Main extends Component {
         <Entity
           obj-model="obj: #pikachu-ball; mtl: #mtl;"
           class="clickable"
-          playSound
+          playsound
           scale="5 5 5"
           radius={2}
           position={this.state.spherePosition}
@@ -166,11 +172,11 @@ class Main extends Component {
 
         <Entity
           obj-model="obj: #pug; mtl: #pug-mtl;"
-          rotation="0 -60 0"
+          rotation="-90 -90 -90" // "0 -60 0"
           scale="0.3 0.3 0.3"
           follow={{
-            target: "#player",
-            distance: { x: 2, y: -1, z: -2 }
+            target: '#player',
+            distance: { x: 1, y: -1, z: 1 } // { x: 2, y: -1, z: 5 }
           }}
           animation__rotate={{
             property: 'rotation',
@@ -179,13 +185,14 @@ class Main extends Component {
             dur: 3000,
             easing: 'linear',
             loop: true,
-            from: { x: 0, y: -70, z: 0 },
-            to: { x: 0, y: -90, z: 0 },
+            from: { x: 0, y: 130, z: 0 },
+            to: { x: 0, y: 150, z: 0 }
           }}
         />
 
         <Entity
           obj-model="obj: #polarbear; mtl: #polarbear-mtl;"
+          rotation="0 230 0"
           scale="0.3 0.3 0.3"
           animation__rotate={{
             property: 'position',
@@ -194,19 +201,51 @@ class Main extends Component {
             easing: 'linear',
             loop: true,
             from: { x: -25, y: 0.5, z: -5 },
-            to: { x: -5, y: 0.5, z: 10 },
+            to: { x: -5, y: 0.5, z: 10 }
           }}
         />
 
-        {
-          penguinData.map(penguin => <Penguin key={penguin.id} data={penguin} />)
-        }
+        <a-video
+          position="-23.887 4.373 33.087"
+          rotation="0 200 0"
+          src="#up-movie"
+          width="5"
+          height="3"
+        />
 
-        {/* <Entity
-            obj-model="obj: #penguin-baby; mtl: #penguin-baby-mtl;"
-            // scale="2 2 2"
-            position="0 3.5 -3"
-          /> */}
+        <Entity
+          obj-model="obj: #igloo; mtl: #igloo-mtl;"
+          rotation="0 -20 0"
+          scale="0.5 0.5 0.5"
+          position="-26.119 1.178 11.112"
+        />
+
+        <Entity
+          obj-model="obj: #cat-tubs; mtl: #cat-tubs-mtl;"
+          scale="10 10 10"
+          rotation="0 -90 0"
+          position="-20 2 8"
+        />
+
+        <Entity
+          obj-model="obj: #penguin; mtl: #penguin-mtl;"
+          position="-26.266 1 30.018"
+          rotation="-90 -90 -90" // "0 -60 0"
+          animation__rotate={{
+            property: 'rotation',
+            dir: 'alternate',
+            delay: 1000,
+            dur: 3000,
+            easing: 'linear',
+            loop: true,
+            from: { x: 0, y: 70, z: 0 },
+            to: { x: 0, y: 90, z: 0 }
+          }}
+        />
+
+        {penguinData.map(penguin => (
+          <Penguin key={penguin.id} data={penguin} />
+        ))}
 
         <Entity
           primitive="a-light"

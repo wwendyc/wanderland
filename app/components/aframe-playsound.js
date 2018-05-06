@@ -1,7 +1,7 @@
 /**
  * Plays sound when component is clicked on
  */
-AFRAME.registerComponent('playSound', {
+AFRAME.registerComponent('playsound', {
   init:function() {
     let playing = false
     let audio = document.querySelector("#pikachu-sound")
