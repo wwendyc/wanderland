@@ -3,6 +3,7 @@
 <br/>
 
 <div align="center">
-Explore the world of webVR with A-Frame and React/Preact.
+Experience a winter wonderland no matter where you are. 
+A webVR app built with A-Frame and React/Preact.
 </div>
 
