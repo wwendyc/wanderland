@@ -8,31 +8,6 @@ import { h, Component } from 'preact'
 import { Entity, Scene } from 'aframe-react'
 import Penguin from './components/Penguin'
 
-const COLORS = ['#D92B6A', '#9564F2', '#FFCF59']
-const penguinData = [
-  {
-    id: 1,
-    fromPos: '-15 0.5 -7',
-    toPos: '0 0.5 -2',
-    duration: '15000',
-    easing: 'linear'
-  },
-  {
-    id: 2,
-    fromPos: '10 0.5 -2',
-    toPos: '-15 0.5 -3',
-    duration: '30000',
-    easing: 'ease-in-out'
-  },
-  {
-    id: 3,
-    fromPos: '8 0.5 -5',
-    toPos: '15 0.5 -7',
-    duration: '30000',
-    easing: 'ease-in-out'
-  }
-]
-
 class Main extends Component {
   constructor() {
     super()
@@ -76,13 +51,6 @@ class Main extends Component {
           width: 60,
           dropHeight: 0.2
         }}
-        // effects="bloom, film, fxaa"
-        // bloom={{ radius: 0.99 }}
-        // film={{
-        //   sIntensity: 0.15,
-        //   nIntensity: 0.25
-        // }}
-        // fxaa
         particle-system={{ preset: 'snow', particleCount: 2000 }}
       >
         <a-assets>
@@ -121,6 +89,7 @@ class Main extends Component {
           <audio id="song" src="sound/wake.m4a" autoplay loop />
         </a-assets>
 
+        {/* TODO: button for the dance party */}
         <Entity
           customizedaudioanalyser={{
             enableBeatDetection: true,
@@ -288,96 +257,29 @@ class Main extends Component {
   }
 }
 
+const COLORS = ['#D92B6A', '#9564F2', '#FFCF59']
+const penguinData = [
+  {
+    id: 1,
+    fromPos: '-15 0.5 -7',
+    toPos: '0 0.5 -2',
+    duration: '15000',
+    easing: 'linear'
+  },
+  {
+    id: 2,
+    fromPos: '10 0.5 -2',
+    toPos: '-15 0.5 -3',
+    duration: '30000',
+    easing: 'ease-in-out'
+  },
+  {
+    id: 3,
+    fromPos: '8 0.5 -5',
+    toPos: '15 0.5 -7',
+    duration: '30000',
+    easing: 'ease-in-out'
+  }
+]
+
 export default Main
-
-// additional lights
-/*
- <Entity primitive="a-light" type="ambient" color="#222" />
-
-<Entity
-  primitive="a-light"
-  audioanalyser-volume-bind="analyserEl: #analyser; component: light; property: intensity; max: 2.2; multiplier: .018"
-  type="point"
-  position="1 2 1"
-/>
-
-<Entity primitive="a-light" type="point" position="-2 2 1" />
-*/
-
-// testing out renders using aframe instead of aframe-react
-/* <a-entity
-  geometry="primitive: octahedron"
-  detail={2}
-  radius={5}
-  position={this.state.spherePosition}
-  color="#FAFAF1"
-/> */
-
-/* <a-entity id="customizedaudioanalyser"
-  audioanalyser="src: #song"
-  audioanalyser-waveform="radius: 0.5"
-  rotation="90 0 0"
-  position="0 50 0"
-></a-entity> */
-
-// polygon
-/*
-  <Entity
-    class="clickable"
-    lowpoly={{
-      color: COLORS[this.state.colorIndex],
-      nodes: true,
-      opacity: 0.15,
-      wireframe: true
-    }}
-    primitive="a-octahedron"
-    detail={2}
-    radius={2}
-    position={this.state.spherePosition}
-    color="#FAFAF1"
-    events={{
-      click: this._handleClick.bind(this)
-    }}
-    animation__rotate={{
-      property: 'rotation',
-      dur: 60000,
-      easing: 'linear',
-      loop: true,
-      to: { x: 0, y: 360, z: 0 }
-    }}
-    animation__oscillate={{
-      property: 'position',
-      dur: 2000,
-      dir: 'alternate',
-      easing: 'linear',
-      loop: true,
-      from: this.state.spherePosition,
-      to: {
-        x: this.state.spherePosition.x,
-        y: this.state.spherePosition.y + 0.25,
-        z: this.state.spherePosition.z
-      }
-    }}
-  />
-*/
-
-/*
-sound={{
-  src: '#pikachu-sound',
-  on: 'click'
-}}
-*/
-
-// movements
-/*
-<a-entity position="-5 0.5 -7">
-  <Entity primitive="a-box" color="red" position="0 -1 0" />
-  <a-animation
-    attribute="rotation"
-    dur="4000"
-    fill="forwards"
-    to="0 360 360"
-    repeat="indefinite"
-  />
-</a-entity>
-*/

@@ -19,6 +19,7 @@
     "aframe-particle-system-component": "^1.0.10",
     "aframe-rain": "^1.0.2",
     "aframe-react": "^4.4.0",
+    "express": "^4.16.3",
     "preact": "^8.1.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
