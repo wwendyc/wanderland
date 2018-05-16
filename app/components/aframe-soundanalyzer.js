@@ -6,18 +6,22 @@ var context
  * the `src`.
  */
 AFRAME.registerSystem('customizedaudioanalyser', {
-  init: function () {
+  init: function() {
     this.analysers = {}
   },
 
-  getOrCreateAnalyser: function (data) {
-    if (!context) { context = new AudioContext() }
+  getOrCreateAnalyser: function(data) {
+    if (!context) {
+      context = new AudioContext()
+    }
     var analysers = this.analysers
     var analyser = context.createAnalyser()
     var audioEl = data.src
     var src = audioEl.getAttribute('src')
 
-    if (analysers[src]) { return analysers[src] }
+    if (analysers[src]) {
+      return analysers[src]
+    }
 
     var source = context.createMediaElementSource(audioEl)
     source.connect(analyser)
@@ -36,29 +40,31 @@ AFRAME.registerSystem('customizedaudioanalyser', {
  */
 AFRAME.registerComponent('customizedaudioanalyser', {
   schema: {
-    enableBeatDetection: {default: true},
-    enableLevels: {default: true},
-    enableWaveform: {default: true},
-    enableVolume: {default: true},
-    fftSize: {default: 2048},
-    smoothingTimeConstant: {default: 0.8},
-    src: {type: 'selector'},
-    unique: {default: false}
+    enableBeatDetection: { default: true },
+    enableLevels: { default: true },
+    enableWaveform: { default: true },
+    enableVolume: { default: true },
+    fftSize: { default: 2048 },
+    smoothingTimeConstant: { default: 0.8 },
+    src: { type: 'selector' },
+    unique: { default: false }
   },
 
-  init: function () {
+  init: function() {
     this.analyser = null
     this.levels = null
     this.waveform = null
     this.volume = 0
   },
 
-  update: function () {
+  update: function() {
     var data = this.data
     var self = this
     var system = this.system
 
-    if (!data.src) { return }
+    if (!data.src) {
+      return
+    }
 
     // Get or create AnalyserNode.
     if (data.unique) {
@@ -67,20 +73,22 @@ AFRAME.registerComponent('customizedaudioanalyser', {
       init(system.getOrCreateAnalyser(data))
     }
 
-    function init (analyser) {
+    function init(analyser) {
       self.analyser = analyser
       self.levels = new Uint8Array(self.analyser.frequencyBinCount)
       self.waveform = new Uint8Array(self.analyser.fftSize)
-      self.el.emit('audioanalyser-ready', {analyser: analyser})
+      self.el.emit('audioanalyser-ready', { analyser: analyser })
     }
   },
 
   /**
    * Update spectrum on each frame.
    */
-  tick: function () {
+  tick: function() {
     var data = this.data
-    if (!this.analyser) { return }
+    if (!this.analyser) {
+      return
+    }
 
     // Levels (frequency).
     if (data.enableLevels || data.enableVolume) {
@@ -105,10 +113,12 @@ AFRAME.registerComponent('customizedaudioanalyser', {
     if (data.enableBeatDetection) {
       var BEAT_DECAY_RATE = 0.99
       var BEAT_HOLD = 60
-      var BEAT_MIN = 0.15  // Volume less than this is no beat.
+      var BEAT_MIN = 0.15 // Volume less than this is no beat.
 
       volume = this.volume
-      if (!this.beatCutOff) { this.beatCutOff = volume }
+      if (!this.beatCutOff) {
+        this.beatCutOff = volume
+      }
       if (volume > this.beatCutOff && volume > BEAT_MIN) {
         console.log('[audioanalyser] Beat detected.')
         this.el.emit('audioanalyser-beat')

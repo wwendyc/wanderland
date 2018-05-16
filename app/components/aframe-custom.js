@@ -1,3 +1,6 @@
+/**
+ * Enables pet to follow user. Calculates distance from object to target.
+ */
 AFRAME.registerComponent('follow', {
   schema: {
     distance: {type: 'vec3'},

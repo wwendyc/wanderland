@@ -1,6 +1,9 @@
 import { h } from 'preact'
 import { Entity } from 'aframe-react'
 
+/**
+* Place individual penguins on scene
+*/
 const Penguin = props => {
   return (
     <Entity position={props.data.fromPos}>
@@ -19,8 +22,5 @@ const Penguin = props => {
     </Entity>
   )
 }
-
-// console.log('penguin props.data ', props.data)
-// {id: 1, fromPos: "-15 0.5 -7", toPos: "0 0.5 -2", duration: "15000", easing: "linear"}
 
 export default Penguin
