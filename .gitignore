@@ -2,5 +2,8 @@
 node_modules/
 .npm-debug.log
 .DS_Store
-public
+public/vendor.js
+public/vendor.js.map
+public/movie/up-movie-sound.mp4
+public/sound/wake.m4a
 node_modules

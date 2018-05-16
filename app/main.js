@@ -86,7 +86,7 @@ class Main extends Component {
           <a-asset-item id="igloo" src="3d-objects/igloo/igloo.obj" />
           <video id="up-movie" src="movie/up-movie.mp4" autoplay loop />
           <audio id="pikachu-sound" src="sound/pikachu-sound.mp3" />
-          <audio id="song" src="sound/wake.m4a" autoplay loop />
+          <audio id="song" src="sound/yourhandinmine.mp3" autoplay loop />
         </a-assets>
 
         {/* TODO: button for the dance party */}

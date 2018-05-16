@@ -6,7 +6,7 @@
   "version": "1.0.0",
   "repository": "https://github.com/wwendyc/wanderland",
   "scripts": {
-    "start": "brunch watch --server",
+    "start": "node server",
     "build": "brunch build --production",
     "deploy": "ghpages -d public"
   },
@@ -20,6 +20,7 @@
     "aframe-rain": "^1.0.2",
     "aframe-react": "^4.4.0",
     "express": "^4.16.3",
+    "morgan": "^1.9.0",
     "preact": "^8.1.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
