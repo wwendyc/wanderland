@@ -6,9 +6,10 @@
   "version": "1.0.0",
   "repository": "https://github.com/wwendyc/wanderland",
   "scripts": {
-    "start": "node server",
+    "start": "brunch watch --server",
     "build": "brunch build --production",
-    "deploy": "ghpages -d public"
+    "deploy": "ghpages -d public",
+    "postinstall": "brunch build --production"
   },
   "dependencies": {
     "aframe": "^0.6.1",
