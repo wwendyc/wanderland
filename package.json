@@ -6,10 +6,11 @@
   "version": "1.0.0",
   "repository": "https://github.com/wwendyc/wanderland",
   "scripts": {
-    "start": "brunch watch --server",
-    "build": "brunch build --production",
-    "deploy": "ghpages -d public",
-    "postinstall": "brunch build --production"
+    "start": "node server",
+    "build": "webpack",
+    "build:prod": "webpack -p",
+    "watch": "webpack --watch & node server",
+    "deploy": "ghpages -d public"
   },
   "dependencies": {
     "aframe": "^0.6.1",
@@ -23,17 +24,26 @@
     "express": "^4.16.3",
     "morgan": "^1.9.0",
     "preact": "^8.1.0",
+    "preact-compat": "^3.18.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2",
     "babel-brunch": "~6.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
     "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-latest": "^6",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "brunch": "^2",
     "clean-css-brunch": "^2",
     "ghpages": "0.0.3",
-    "uglify-js-brunch": "^2"
+    "uglify-js-brunch": "^2",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
   }
 }

@@ -120,7 +120,7 @@ AFRAME.registerComponent('customizedaudioanalyser', {
         this.beatCutOff = volume
       }
       if (volume > this.beatCutOff && volume > BEAT_MIN) {
-        console.log('[audioanalyser] Beat detected.')
+        // console.log('[audioanalyser] Beat detected.')
         this.el.emit('audioanalyser-beat')
         this.beatCutOff = volume * 1.5
         this.beatTime = 0

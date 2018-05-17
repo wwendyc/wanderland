@@ -5,6 +5,8 @@
  * Finally, it mounts the app to the root node.
  */
 
+import React from 'react'
+import ReactDOM from 'react-dom'
 import 'aframe'
 import 'aframe-animation-component'
 import 'aframe-event-set-component'
@@ -27,3 +29,8 @@ import Main from './main'
 document.addEventListener('DOMContentLoaded', () => {
   render(<Main />, document.querySelector('#app'))
 })
+
+// ReactDOM.render(
+//   <Main />,
+//   document.querySelector('#app')
+// )
