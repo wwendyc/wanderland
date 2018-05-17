@@ -10,7 +10,7 @@
     "build": "webpack",
     "build:prod": "webpack -p",
     "watch": "webpack --watch & node server",
-    "deploy": "ghpages -d public"
+    "deploy": "sh scripts/deploy.sh"
   },
   "dependencies": {
     "aframe": "^0.6.1",
@@ -36,7 +36,6 @@
     "babel-preset-latest": "^6",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "ghpages": "0.0.3",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3"
   }
