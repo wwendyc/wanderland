@@ -18,7 +18,6 @@
     "aframe-audioanalyser-component": "^3.0.3",
     "aframe-bmfont-text-component": "^0.1.4",
     "aframe-event-set-component": "^3.0.3",
-    "aframe-particle-system-component": "^1.0.10",
     "aframe-rain": "^1.0.2",
     "aframe-react": "^4.4.0",
     "express": "^4.16.3",
@@ -29,8 +28,6 @@
     "react-dom": "^16.3.2"
   },
   "devDependencies": {
-    "auto-reload-brunch": "^2",
-    "babel-brunch": "~6.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-react-jsx": "^6.24.1",
@@ -39,10 +36,7 @@
     "babel-preset-latest": "^6",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "brunch": "^2",
-    "clean-css-brunch": "^2",
     "ghpages": "0.0.3",
-    "uglify-js-brunch": "^2",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3"
   }

@@ -12,15 +12,14 @@ class Main extends Component {
   constructor() {
     super()
     this.state = {
-      spherePosition: { x: 0.0, y: 7, z: -10.0 },
-      colorIndex: 0,
-      color: 'red'
+      spherePosition: { x: 0.0, y: 7, z: -10.0 }
     }
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  _handleClick() {
+  handleClick = function () {
     this.setState({
-      colorIndex: (this.state.colorIndex + 1) % COLORS.length
+      spherePosition: { x: 0.0, y: 7, z: -10.0 }
     })
   }
 
@@ -39,7 +38,7 @@ class Main extends Component {
           ground: 'canyon',
           groundYScale: 5.0,
           groundTexture: 'none',
-          groundColor: '#003462', // land: 755b5c, ocean: 003462, ice: A5F2F3
+          groundColor: '#003462',
           grid: 'none'
         }}
         rain={{
@@ -51,7 +50,6 @@ class Main extends Component {
           width: 60,
           dropHeight: 0.2
         }}
-        particle-system={{ preset: 'snow', particleCount: 2000 }}
       >
         <a-assets>
           <a-asset-item id="mtl" src="3d-objects/pikachu-ball/materials.mtl" />
@@ -115,7 +113,7 @@ class Main extends Component {
           radius={2}
           position={this.state.spherePosition}
           events={{
-            click: this._handleClick.bind(this)
+            click: this.handleClick
           }}
           animation__rotate={{
             property: 'rotation',

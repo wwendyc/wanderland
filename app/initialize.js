@@ -10,7 +10,6 @@ import ReactDOM from 'react-dom'
 import 'aframe'
 import 'aframe-animation-component'
 import 'aframe-event-set-component'
-import 'aframe-particle-system-component'
 import 'aframe-audioanalyser-component'
 import 'aframe-rain'
 
@@ -29,8 +28,3 @@ import Main from './main'
 document.addEventListener('DOMContentLoaded', () => {
   render(<Main />, document.querySelector('#app'))
 })
-
-// ReactDOM.render(
-//   <Main />,
-//   document.querySelector('#app')
-// )

@@ -3,7 +3,7 @@
 <br/>
 
 <div align="center">
-Experience a winter wonderland no matter where you are.
+Experience a winter wonderland wherever you are.
 A webVR app built with A-Frame and React/Preact.
 </div>
 
@@ -11,6 +11,6 @@ A webVR app built with A-Frame and React/Preact.
 Wanderland can be explored using a VR headset. Simply click on the VR goggles on the bottom right of the screen.
 
 ### Credits
-* Music: Wake by Young & Free
+* Music: Wake - Young & Free, Your Hand in Mine - Explosions in the Sky
 * Movie clip: Up by Disney
 * Poly: Google Poly & SketchFab

@@ -4,13 +4,13 @@ module.exports = {
   entry: ['babel-polyfill', './app/initialize.js'],
   mode: 'development',
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    path: path.join(__dirname, 'public')
   },
   devtool: 'source-maps',
   resolve: {
     "alias": {
-      "react": "preact-compat",
+      "react": "preact",
       "react-dom": "preact-compat"
     }
   },
