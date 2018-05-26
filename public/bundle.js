@@ -1302,6 +1302,7 @@ var Main = function (_Component) {
             width: 60,
             dropHeight: 0.2
           }
+          // vr-mode-ui="enabled: false"
         },
         (0, _preact.h)(
           'a-assets',
@@ -1893,7 +1894,7 @@ AFRAME.registerComponent('audioanalyser', {
       volume = this.volume;
       if (!this.beatCutOff) { this.beatCutOff = volume; }
       if (volume > this.beatCutOff && volume > BEAT_MIN) {
-        // console.log('[audioanalyser] Beat detected.');
+        console.log('[audioanalyser] Beat detected.');
         this.el.emit('audioanalyser-beat');
         this.beatCutOff = volume * 1.5;
         this.beatTime = 0;

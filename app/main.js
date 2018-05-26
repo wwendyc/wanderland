@@ -50,6 +50,7 @@ class Main extends Component {
           width: 60,
           dropHeight: 0.2
         }}
+        // vr-mode-ui="enabled: false"
       >
         <a-assets>
           <a-asset-item id="mtl" src="3d-objects/pikachu-ball/materials.mtl" />
